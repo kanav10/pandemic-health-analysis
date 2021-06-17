@@ -1,0 +1,14 @@
+{
+  "name": "bigquery-public-datasets",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "cubejs-server"
+  },
+  "template": "docker",
+  "templateVersion": "0.27.46",
+  "devDependencies": {
+    "@cubejs-backend/bigquery-driver": "^0.27.46",
+    "@cubejs-backend/server": "^0.27.46"
+  }
+}

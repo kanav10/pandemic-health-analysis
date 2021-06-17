@@ -1,0 +1,5 @@
+.env
+node_modules
+.cubestore
+upstream
+covid-health-data-fe844a54dd07.json
