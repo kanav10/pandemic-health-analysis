@@ -78,7 +78,7 @@ Start the server
 
 - [@Kanav Malik](https://github.com/kanav10)
 - [@Ahmed Rashique](https://github.com/rush17)
-- [@Ryan Selim](https://github.com/rayanselim)
+- [@Rayan Selim](https://github.com/rayanselim)
 
   
 ## License
