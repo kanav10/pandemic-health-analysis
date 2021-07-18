@@ -77,7 +77,7 @@ Start the server
 ## Authors
 
 - [@Kanav Malik](https://github.com/kanav10)
-- [@Ahemad Rashique](https://github.com/rush17)
+- [@Ahmed Rashique](https://github.com/rush17)
 - [@Ryan Selim](https://github.com/rayanselim)
 
   
