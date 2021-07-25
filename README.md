@@ -1,5 +1,5 @@
 
-# A Comparison Analysis of COVID-19 on Countries with weak and robust health care systems based on past epidemic experience.
+# A Comparison Analysis of COVID-19 on Countries with weak and robust health care systems.
 
 When we talk about healthcare, people living in developed countries enjoy more facilities than the
 rest of the world. We know that death due to infections and poverty related diseases are uncommon
