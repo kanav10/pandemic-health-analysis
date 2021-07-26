@@ -1,81 +1,99 @@
- 
 cube(`Mobility`, {
   sql: `
-    SELECT *
-    FROM \`bigquery-public-data.covid19_open_data.covid19_open_data\`
-  `,
+      SELECT *
+      FROM \`bigquery-public-data.covid19_open_data.covid19_open_data\`
+    `,
 
   refreshKey: {
     sql: `
-      SELECT COUNT(*)
-      FROM \`bigquery-public-data.covid19_open_data.covid19_open_data\`
-    `,
+        SELECT COUNT(*)
+        FROM \`bigquery-public-data.covid19_open_data.covid19_open_data\`
+      `,
   },
 
   measures: {
-      cumulative_deceased: {
-      sql: `cumulative_deceased`,
-      type: `number`,
+    cumulative_deceased: {
+      sql: `CAST(cumulative_deceased AS NUMERIC)`,
+      type: `sum`,
     },
 
     population: {
-      sql: `population`,
-      type: `number`,
+      sql: `CAST(population AS NUMERIC)`,
+      type: `max`,
+      format: 'percent'
+      
     },
 
     human_development_index: {
-      sql: `human_development_index`,
-      type: `number`,
+      sql: `CAST(human_development_index AS NUMERIC)`,
+      type: `max`,
     },
 
     gdp_per_capita_usd: {
       sql: `gdp_per_capita_usd`,
-      type: `number`,
+      type: `max`,
+    
     },
 
     health_expenditure_usd: {
-      sql: `health_expenditure_usd`,
-      type: `number`,
+      sql: `CAST(health_expenditure_usd AS NUMERIC)`,
+      type: `max`,
     },
 
     comorbidity_mortality_rate: {
-      sql: `comorbidity_mortality_rate`,
-      type: `number`,
+      sql: `CAST(comorbidity_mortality_rate AS NUMERIC)`,
+      type: `max`,
     },
 
     life_expectancy: {
-      sql: `life_expectancy`,
-      type: `number`,
+      sql: `CAST(life_expectancy AS NUMERIC)`,
+      type: `max`,
     },
 
     cumulative_recovered: {
-      sql: `cumulative_recovered`,
-      type: `number`,
+      sql: `CAST(cumulative_recovered AS NUMERIC)`,
+      type: `max`,
+      // format: 'percent'
+    },
+    //Check
+    emergencyHealthcareInvestment: { 
+        sql: `CAST(emergency_investment_in_healthcare AS NUMERIC)`,
+        type: `sum`,
+    },
+  
+    vaccineInvestment: { 
+        sql: `CAST(investment_in_vaccines AS NUMERIC)`,
+        type: `max`
     },
 
+    cumulative_persons_vaccinated: {
+        sql: `CAST(cumulative_persons_vaccinated AS NUMERIC)`,
+        type: `max`
+    }
+    
   },
 
   dimensions: {
     key: {
-      sql: `CONCAT(country_region, '-', date)`,
+      sql: `CONCAT(country_name, '-', ${Mobility}.date)`,
       type: `string`,
-      primaryKey: true
+      primaryKey: true,
     },
 
-    country_name: {
+    country: {
       sql: `country_name`,
-      type: `string`
+      type: `string`,
     },
-
-    date: {
-      sql: `date`,
-      type: `time`
-    },
+//Confusion
+date: {
+    sql: `TIMESTAMP(${Mobility}.date)`,
+    type: `time`
+  },
   },
 
   joins: {
     Measures: {
-      sql: `${Measures}.country_name = ${Mobility}.country_name`,
+      sql: `${Measures}.country_name = ${Mobility}.country_name AND ${Measures}.date = ${Mobility}.date`,
       relationship: `hasOne`
     }
   }
